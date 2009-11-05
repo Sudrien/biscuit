@@ -1,0 +1,14 @@
+Biscuit
+
+Extending cookies with the Prototype JavaScript Framework
+http://github.com/sudrien/biscuit
+
+Normally, document.cookie is a string. Biscuit, as of now, makes it accessible as a hash.
+
+Usage:
+
+
+document.cookies().get('cookie_index')
+
+
+This has been tested with Prototype 1.6.1
