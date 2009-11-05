@@ -1,6 +1,6 @@
 <?
 
-	setcookie("cookie1", "value1");
+	setcookie("cookie1", "value1", time()+60*60*24*30);
 	setcookie("cookie2", "value2");
 
 ?>
@@ -14,9 +14,17 @@
 		<script type="text/javascript" src="../src/biscuit.js"></script>
 		<script type="text/javascript">
 // <![CDATA[
+
+
 		document.observe("dom:loaded", function() {
+		//	var exdate=new Date();
+		//	exdate.setDate(exdate.getDate()+expiredays);
+			document.cookies().set('v','i');
+			document.cookies().set('cookie2','new value2');
+		
 			$('dump1').update(document.cookie.inspect().escapeHTML());
 			$('dump2').update(document.cookies().inspect().escapeHTML());
+			$('dump3').update(document.cookies().get('cookie2'));
 			});
 // ]]>
 		</script>
@@ -25,5 +33,6 @@
 		<p id="static">Get you cookies here, folks.</p>
 		<p id="dump1"></p>
 		<p id="dump2"></p>
+		<p id="dump3"></p>
 	</body>
 </html>

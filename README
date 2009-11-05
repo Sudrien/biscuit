@@ -9,6 +9,7 @@ Usage:
 
 
 document.cookies().get('cookie_index')
+document.cookies().set('cookie_index','value')
 
 
 This has been tested with Prototype 1.6.1
