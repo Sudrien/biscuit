@@ -17,14 +17,22 @@
 
 
 		document.observe("dom:loaded", function() {
-		//	var exdate=new Date();
-		//	exdate.setDate(exdate.getDate()+expiredays);
-			document.cookies().set('v','i');
+			$('dump1').update(document.cookies().inspect().escapeHTML());
+			
+			var myDate=new Date();
+			myDate.setHours(myDate.getHours()+5);
+			
+			if(document.cookies().get('v')) {
+				document.cookies().set('v', parseInt( document.cookies().get('v')) + 1, {'expires': myDate} );
+				}
+			else {
+				document.cookies().set('v', 1, {'expires': myDate} );
+				}
 			document.cookies().set('cookie2','new value2');
-		
-			$('dump1').update(document.cookie.inspect().escapeHTML());
-			$('dump2').update(document.cookies().inspect().escapeHTML());
-			$('dump3').update(document.cookies().get('cookie2'));
+			document.cookies().unset('cookie1');
+			$('dump2').update(document.cookie.inspect().escapeHTML());
+			$('dump3').update(document.cookies().inspect().escapeHTML());
+			$('dump4').update(document.cookies().get('cookie2'));
 			});
 // ]]>
 		</script>
@@ -34,5 +42,6 @@
 		<p id="dump1"></p>
 		<p id="dump2"></p>
 		<p id="dump3"></p>
+		<p id="dump4"></p>
 	</body>
 </html>

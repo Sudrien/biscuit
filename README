@@ -14,20 +14,26 @@ so far.
 --
 
 Usage:
-document.cookies().get('cookie_index')
-document.cookies().set('cookie_index','value')
+document.cookies().get('cookie_index');
+document.cookies().unset('cookie_index');
+document.cookies().set('cookie_index','value', {params});
+
+Supported params
+expires: date. Converted to max-age. Overridden by max-age.
+max_age: integer. Time in second until cookie expires. If not set, cookie expires when browser closes.
+path: string. No paths outside this will have access to cookie.
+domain: string. No subdomains outside this will have access to cookie. 
+secure: boolean. If true, only send on https requests.
 
 --
 
 Todo:
-- confirm deleting cookies works as expected
 - derive scope from linking page, if unspecified
 - test for proper scope
-- max-age/expires switching (int vs date)
 - test in IE & Webkit
-- document updated set function
 
 
 Refrences:
 https://developer.mozilla.org/En/Document.cookie
 http://php.net/manual/en/function.setcookie.php
+http://www.w3.org/Protocols/rfc2109/rfc2109
