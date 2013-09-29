@@ -3,7 +3,6 @@
 	var Cookie = Class.create(Hash, {
 		set: function(key, value, params) {
 		
-		
 			if (key == undefined) new Error('No key');
 			if (value == undefined) new Error('No value');
 			to_set =  key + "=" + value;
@@ -34,7 +33,9 @@
 		
 		unset:  function(key) {
 			var value = this._object[key];
-			to_set =  key + "=" + value + ";max-age=0";
+			var date = new Date();
+			date.setTime(date.getTime()-1000);
+			to_set =  key + "=" + value + "; expires=" +date.toGMTString();
 			delete this._object[key];
 			document.cookie = to_set;
 			return value;
@@ -50,9 +51,7 @@
 				return pair.map(Object.inspect).join(': ');
 				}).join(', ') + '}>';
 			}
-
-
-			});
+		});
 
 	function cookies() {
 		cook = new Cookie;
@@ -65,3 +64,4 @@
 		});
 
 })();
+
